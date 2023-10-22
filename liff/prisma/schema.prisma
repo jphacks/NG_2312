@@ -1,11 +1,42 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// schemaを定義
+model User {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()"))
+  line_id   String
+  name      String
+  image_url String?
+  lending   Rental[] @relation("LendRelation")
+  borrowing Rental[] @relation("BorrowRelation")
+}
+
+model Rental {
+  id          String   @id @default(dbgenerated("uuid_generate_v4()"))
+  lender_id   String
+  borrower_id String?
+  is_return   Boolean
+  return_date DateTime
+  lender      User     @relation(name: "LendRelation", fields: [lender_id], references: [id])
+  borrower    User?    @relation(name: "BorrowRelation", fields: [borrower_id], references: [id])
+  books       Book[]
+  created_at  DateTime @default(now())
+}
+
+model Book {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  author      String
+  image_url   String?
+  owner_id    String
+  rental_id   String
+  rental      Rental  @relation(fields: [rental_id], references: [id])
 }
