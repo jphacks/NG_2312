@@ -1,18 +1,9 @@
-import type { Liff } from "@line/liff";
 import type { NextPage } from "next";
-import Header from "@/components/base/Header";
-import Footer from "@/components/base/Footer";
-import LoadingCards from "@/features/rental/components/LoadingCards";
 
-const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
-  liff,
-  liffError,
-}) => {
+const Home: NextPage = () => {
   return (
-    <div className="w-full h-screen">
-      <Header title="詳細" isBack={false} />
-      <LoadingCards />
-      <Footer pageName="lending" />
+    <div className="w-full h-screen bg-base-color flex justify-center items-center">
+      <h1 className="text-center text-5xl text-main-color font-bold">LenBow</h1>
     </div>
   );
 };
