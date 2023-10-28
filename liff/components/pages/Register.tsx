@@ -3,7 +3,8 @@ import DateInput from "@/features/register/components/DateInput";
 import BookSearch from "@/features/register/components/BookSearch";
 import { useRouter } from "next/router";
 import { BookInfo, Register } from "@/features/register/types";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
+import LoadingBookCard from "@/features/register/components/LoadingBookCard";
 
 type RegisterAction =
   | { type: "SELECT_DATE"; payload: Date }
@@ -33,6 +34,19 @@ const Register = () => {
     return_date: new Date(),
     bookInfoList: [],
   });
+  const [isSearching, setIsSearching] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  if (error) {
+    if (error.message == "not book") {
+      alert("関連の本が見つかりませんでした。");
+    } else if (error.message == "error post") {
+      alert("登録できませんでした");
+    } else {
+      alert("予期せぬエラーが発生しました。");
+    }
+    setError(null);
+  }
 
   console.log(state);
 
@@ -56,14 +70,20 @@ const Register = () => {
           />
         </div>
         <div className="mt-10">
-          <BookSearch />
+          <BookSearch
+            setIsLoading={setIsSearching}
+            setError={setError}
+            addBook={(bookInfo: BookInfo) =>
+              dispatch({ type: "ADD_BOOK", payload: bookInfo })
+            }
+          />
         </div>
         <div className="mt-4">
           <div className="w-2/3 border-b-2 border-main-color text-main-color text-base cursor-pointer">
             バーコード写真から本を登録
           </div>
         </div>
-        <div className="mt-10"></div>
+        <div className="mt-10">{isSearching && <LoadingBookCard />}</div>
       </div>
       <div className="mt-20"></div>
     </div>
