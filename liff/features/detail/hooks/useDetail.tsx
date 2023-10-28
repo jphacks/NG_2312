@@ -11,7 +11,7 @@ export const useDetail = () => {
   const [error, setError] = useState<Error | null>(null);
   const { idToken } = useSelector((state: Selector) => state.user);
   const router = useRouter();
-  const { rentalId } = router.query;
+  const { rentalId, reload } = router.query;
 
   useEffect(() => {
     setLoading(true);
@@ -20,6 +20,7 @@ export const useDetail = () => {
     if (!rentalId) return;
 
     (async () => {
+      console.log("a");
       try {
         const resRentalDetail = await getDetail(idToken, rentalId as string);
         setRentalDetail(resRentalDetail);
@@ -29,7 +30,7 @@ export const useDetail = () => {
         setLoading(false);
       }
     })();
-  }, [idToken, rentalId]);
+  }, [idToken, rentalId, reload]);
 
   if (error) {
     console.error(error);
