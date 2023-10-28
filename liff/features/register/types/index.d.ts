@@ -6,3 +6,8 @@ export type BookInfo = {
   author: string;
   image_url?: string;
 };
+
+export type Register = {
+  return_date: Date;
+  bookInfoList: BookInfo[];
+};
