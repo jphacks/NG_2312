@@ -5,6 +5,11 @@ import { useRouter } from "next/router";
 import { BookInfo, Register } from "@/features/register/types";
 import { useReducer, useState } from "react";
 import LoadingBookCard from "@/features/register/components/LoadingBookCard";
+import { useSelector } from "react-redux";
+import { Selector } from "@/redux/type";
+import { registerRental } from "@/features/register/api/registerRental";
+import BookCardList from "@/features/register/components/BookCardList";
+import FullWidthButton from "../ui/Buttons/FullWidthButton";
 
 type RegisterAction =
   | { type: "SELECT_DATE"; payload: Date }
@@ -36,6 +41,8 @@ const Register = () => {
   });
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [isPosting, setIsPosting] = useState(false);
+  const { idToken } = useSelector((state: Selector) => state.user);
 
   if (error) {
     if (error.message == "not book") {
@@ -48,7 +55,19 @@ const Register = () => {
     setError(null);
   }
 
-  console.log(state);
+  const postRegisterData = async () => {
+    if (!idToken) return;
+    setIsPosting(true);
+
+    try {
+      const responseRegisterData = await registerRental(state, idToken);
+      router.push(`/detail/${responseRegisterData.id}`);
+    } catch (error) {
+      setError(new Error("error post"));
+    }
+
+    setIsPosting(false);
+  };
 
   return (
     <div className="w-full">
@@ -83,9 +102,26 @@ const Register = () => {
             バーコード写真から本を登録
           </div>
         </div>
-        <div className="mt-10">{isSearching && <LoadingBookCard />}</div>
+        <div className="mt-10">
+          {isSearching ? (
+            <LoadingBookCard />
+          ) : (
+            <BookCardList
+              bookInfoList={state.bookInfoList}
+              deleteBook={(index: number) =>
+                dispatch({ type: "DELETE_BOOK", payload: index })
+              }
+            />
+          )}
+        </div>
       </div>
       <div className="mt-20"></div>
+      <FullWidthButton
+        isActive={state.bookInfoList.length != 0}
+        value="確定"
+        handleButton={() => postRegisterData()}
+        isLoading={isPosting}
+      />
     </div>
   );
 };

@@ -11,3 +11,8 @@ export type Register = {
   return_date: Date;
   bookInfoList: BookInfo[];
 };
+
+export type ResRegisterData = Rental & {
+  return_date: String;
+  created_at: String;
+};
