@@ -1,7 +1,9 @@
-import { useState } from "react";
+type Props = {
+  isRentalDetail: boolean;
+  setIsRentalDetail: (isRentalDetail: boolean) => void;
+};
 
-const SwitchMenu = () => {
-  const [isRentalDetail, setIsRentalDetail] = useState(true);
+const SwitchMenu = ({ isRentalDetail, setIsRentalDetail }: Props) => {
   return (
     <div className="w-full cursor-pointer">
       <div className="flex border-b-[1px] border-app-gray">

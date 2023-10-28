@@ -9,8 +9,13 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 import Image from "next/image";
+import { Book } from "@/types/type";
 
-const BooksDetail = () => {
+type Props = {
+  bookDetailList: Book[];
+};
+
+const BooksDetail = ({ bookDetailList }: Props) => {
   return (
     <div className="w-full text-main-color">
       <Swiper
@@ -26,44 +31,29 @@ const BooksDetail = () => {
         [&_.swiper-pagination-bullet]:bg-gray-600
         "
       >
-        <SwiperSlide>
-          <div className="w-full flex flex-col items-center pb-8">
-            <Image
-              src="http://books.google.com/books/content?id=Wx1dLwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
-              alt="book"
-              width={128}
-              height={182}
-            />
-            <div className="mt-6 text-base font-bold w-9/12 break-words text-center">
-              ExelVBAを実務で使い倒す技術
+        {bookDetailList.map((bookDetail, key) => (
+          <SwiperSlide key={key}>
+            <div className="w-full flex flex-col items-center pb-8">
+              {bookDetail?.image_url && (
+                <Image
+                  src={bookDetail.image_url}
+                  alt="book"
+                  width={128}
+                  height={182}
+                />
+              )}
+              <div className="mt-6 text-base font-bold w-9/12 break-words text-center">
+                {bookDetail.title}
+              </div>
+              <div className="mt-2 text-sm w-9/12 break-words text-center">
+                {bookDetail.description}
+              </div>
+              <div className="mt-2 text-sm w-9/12 break-words text-center">
+                {bookDetail.author}
+              </div>
             </div>
-            <div className="mt-2 text-sm w-9/12 break-words text-center">
-              本書では、VBAを実務の現場で活かすための知識(テクニック)と知恵(考え方とコツ)を教えます!
-            </div>
-            <div className="mt-2 text-sm w-9/12 break-words text-center">
-              高橋宣成
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full flex flex-col items-center pb-8">
-            <Image
-              src="http://books.google.com/books/content?id=Wx1dLwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
-              alt="book"
-              width={128}
-              height={182}
-            />
-            <div className="mt-6 text-base font-bold w-9/12 break-words text-center">
-              ExelVBAを実務で使い倒す技術
-            </div>
-            <div className="mt-2 text-sm w-9/12 break-words text-center">
-              本書では、VBAを実務の現場で活かすための知識(テクニック)と知恵(考え方とコツ)を教えます!
-            </div>
-            <div className="mt-2 text-sm w-9/12 break-words text-center">
-              高橋宣成
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
