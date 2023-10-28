@@ -4,9 +4,15 @@ import Footer from "../base/Footer";
 import { RentalCardList } from "@/features/rental/components/RentalCardList";
 import PlusButton from "../ui/Buttons/PlusButton";
 import { useRouter } from "next/router";
+import { useRentals } from "@/features/rental/hooks/useRentals";
 
 const Lending = () => {
   const router = useRouter();
+  const { lendList, isLoading, error } = useRentals();
+
+  if (error) {
+    alert("エラーが発生しデータを取得できませんでした。");
+  }
 
   return (
     <div className="w-full">
@@ -14,7 +20,11 @@ const Lending = () => {
       <Header title="貸出リスト" isBack={false} />
 
       <div className="mt-8">
-        <RentalCardList />
+        {isLoading ? (
+          <LoadingCards />
+        ) : (
+          <RentalCardList rentalType="lending" rentalList={lendList} />
+        )}
       </div>
 
       <div className="mb-44"></div>
