@@ -19,16 +19,16 @@ export const useDetail = () => {
     if (!idToken) return;
     if (!rentalId) return;
 
-    // (async () => {
-    //   try {
-    //     const resRentalDetail = await getDetail(idToken, rentalId as string);
-    //     setRentalDetail(resRentalDetail);
-    //   } catch (error) {
-    //     setError(new Error("データ取得に失敗"));
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // })();
+    (async () => {
+      try {
+        const resRentalDetail = await getDetail(idToken, rentalId as string);
+        setRentalDetail(resRentalDetail);
+      } catch (error) {
+        setError(new Error("データ取得に失敗"));
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, [idToken, rentalId]);
 
   if (error) {

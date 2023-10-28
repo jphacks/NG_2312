@@ -20,7 +20,12 @@ const Detail = () => {
   const content = useMemo(() => {
     if (isLoading || error)
       return <LoadingDetail isRentalDetail={isRentalDetail} />;
-    return isRentalDetail ? <RentalDetail /> : <BooksDetail />;
+    if (!rentalDetail) return null;
+    return isRentalDetail ? (
+      <RentalDetail rentalDetail={rentalDetail} />
+    ) : (
+      <BooksDetail />
+    );
   }, [isLoading, error, rentalDetail, isRentalDetail]);
 
   return (
