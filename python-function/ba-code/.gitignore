@@ -1,3 +1,6 @@
 *.DS_Store
 /images
 /__pycache__
+*.pt
+*.png
+*.jpg
