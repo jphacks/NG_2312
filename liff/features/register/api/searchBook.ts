@@ -16,9 +16,9 @@ export const searchBook = async (query: string): Promise<BookInfo> => {
 
     const bookInfo: BookInfo = {
       title: resBookInfo.title,
-      description: resBookInfo.description,
-      author: resBookInfo.authors.join("/"),
-      image_url: resBookInfo.imageLinks.smallThumbnail,
+      description: resBookInfo.description ?? "",
+      author: resBookInfo.authors?.join("/") ?? resBookInfo.publisher ?? "",
+      image_url: resBookInfo.imageLinks?.smallThumbnail,
     };
 
     return bookInfo;

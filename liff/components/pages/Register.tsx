@@ -19,7 +19,9 @@ type RegisterAction =
 const regiserReducer = (state: Register, action: RegisterAction): Register => {
   switch (action.type) {
     case "SELECT_DATE":
-      return { ...state, return_date: action.payload };
+      const return_date = action.payload;
+      return_date.setHours(0, 0, 0, 0);
+      return { ...state, return_date: return_date };
     case "ADD_BOOK":
       const addedBookInfoList = [...state.bookInfoList, action.payload];
       return { ...state, bookInfoList: addedBookInfoList };
@@ -35,8 +37,11 @@ const regiserReducer = (state: Register, action: RegisterAction): Register => {
 
 const Register = () => {
   const router = useRouter();
+  const initDate = new Date();
+  initDate.setHours(0, 0, 0, 0);
+
   const [state, dispatch] = useReducer(regiserReducer, {
-    return_date: new Date(),
+    return_date: initDate,
     bookInfoList: [],
   });
   const [isSearching, setIsSearching] = useState(false);
