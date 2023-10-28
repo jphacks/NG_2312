@@ -22,7 +22,7 @@ for i, item in enumerate(results["items"][:5]):
     print(f"Title: {item['volumeInfo']['title']}")
     print(f"Authors: {item['volumeInfo'].get('authors', ['N/A'])}")
     print()
-    
+
 
 # タイトル、説明、画像URL、著者
 # 説明は空でも返す
