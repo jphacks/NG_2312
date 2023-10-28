@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Selector } from "@/redux/type";
 import { RentalDetail } from "../types";
 import { useRouter } from "next/router";
+import { getDetail } from "../api/getDetail";
 
 export const useDetail = () => {
   const [rentalDetail, setRentalDetail] = useState<RentalDetail>();
@@ -20,8 +21,7 @@ export const useDetail = () => {
 
     // (async () => {
     //   try {
-    //     const resRentalDetail = await getDetail(idToken, rentalId);
-    //     // console.log(rentalData);
+    //     const resRentalDetail = await getDetail(idToken, rentalId as string);
     //     setRentalDetail(resRentalDetail);
     //   } catch (error) {
     //     setError(new Error("データ取得に失敗"));
@@ -29,7 +29,7 @@ export const useDetail = () => {
     //     setLoading(false);
     //   }
     // })();
-  }, [idToken]);
+  }, [idToken, rentalId]);
 
   if (error) {
     console.error(error);
