@@ -28,3 +28,9 @@ for i, item in enumerate(results["items"][:5]):
 # 説明は空でも返す
 # 画像はなくてもいい
 # 著者は1つの文字列、なければ出版社、それもなければから文字列
+# BookInfo = {
+#   title: string;
+#   description: string;
+#   author: string;
+#   image_url?: string;
+# };
