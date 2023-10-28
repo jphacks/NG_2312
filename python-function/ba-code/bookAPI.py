@@ -8,7 +8,6 @@ BookInfo = {"title":"", "description":"", "author":"", "image_url":""}
 
 
 def search_Books(number):
-    number = 9784844365174
     params = {
         "q": f"isbn:{number}", # intitleで本のタイトルから検索
         "printType": "books",
@@ -40,14 +39,14 @@ def search_Books(number):
             BookInfo.pop("image_url")
         else:
             BookInfo["image_url"] = img_url
-        
-        print(f"Title: {item['volumeInfo']['title']}")
-        print(f"Authors: {item['volumeInfo'].get('authors', ['N/A'])}")
+        # print(f"Title: {item['volumeInfo']['title']}")
+        # print(f"Authors: {item['volumeInfo'].get('authors', ['N/A'])}")
     
-    print(BookInfo)
+    # print(BookInfo)
+    return BookInfo
 
 
-search_Books(9784844365174)
+# search_Books(9784844365174)
 
 # タイトル、説明、画像URL、著者
 # 説明は空でも返す

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+import bookAPI
 
 file = "./images/Im_99.png"
 
@@ -49,4 +49,11 @@ def search_Image():
 
 
 search_Image()
-print(code)
+# print(code)
+BookInfo_list = []
+for code_item in code:
+    if code_item.startswith('978'):
+        print(code_item)
+        BookInfo_list.append(bookAPI.search_Books(code_item))
+
+print(BookInfo_list)
