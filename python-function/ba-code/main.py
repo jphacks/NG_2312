@@ -6,7 +6,7 @@ import numpy as np
 # file = "./barcode.png"
 # file = "./IM_66.png"
 # file = "./Im_55.png"
-file = "./Im_99.png"
+file = "./images/Im_99.png"
 #画像を読み込む
 img = cv2.imread(file)
 img = cv2.resize(img, (1000, 1000))
