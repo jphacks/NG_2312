@@ -13,7 +13,7 @@ const BorrowingPage = ({
 }) => {
   useLogin(liff);
 
-  return <Borrowing />;
+  return <Borrowing liff={liff} />;
 };
 
 export default BorrowingPage;
