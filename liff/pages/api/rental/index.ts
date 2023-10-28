@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Book, Rental } from "@/types/type";
 import prisma from "@/lib/api/db";
 import { getUserInfoByIdToken } from "@/lib/api/user";
+import { BookInfo } from "@/features/register/types";
 
 export default async function handler(
   req: NextApiRequest,
@@ -51,6 +52,44 @@ export default async function handler(
 
         res.status(200).json(resData);
       } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    } else if (req.method == "POST") {
+      const { return_date: returnDateString, bookInfoList } = req.body;
+      const return_date = new Date(returnDateString);
+      const lender_id = userId;
+      const owner_id = userId;
+      const is_return = false;
+
+      try {
+        const newRental = await prisma.rental.create({
+          data: {
+            return_date,
+            lender_id,
+            is_return,
+          },
+        });
+
+        const rental_id = newRental.id;
+
+        const books: Book[] = [];
+
+        const newBooks = await Promise.all(
+          bookInfoList.map(async (bookInfo: BookInfo) => {
+            const newBook = await prisma.book.create({
+              data: {
+                rental_id,
+                owner_id,
+                ...bookInfo,
+              },
+            });
+            return newBook;
+          })
+        );
+
+        res.status(201).json(newRental);
+      } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Internal Server Error" });
       }
     } else {
