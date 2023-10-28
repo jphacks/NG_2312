@@ -24,7 +24,7 @@ const Detail = () => {
     return isRentalDetail ? (
       <RentalDetail rentalDetail={rentalDetail} />
     ) : (
-      <BooksDetail />
+      <BooksDetail bookDetailList={rentalDetail.books} />
     );
   }, [isLoading, error, rentalDetail, isRentalDetail]);
 
