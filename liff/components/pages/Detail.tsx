@@ -5,10 +5,14 @@ import RentalDetail from "@/features/detail/components/RentalDetail";
 import LoadingDetail from "@/features/detail/components/LoadingDetail";
 import { useDetail } from "@/features/detail/hooks/useDetail";
 import { useRouter } from "next/router";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { Selector } from "@/redux/type";
+import PutRentalButton from "@/features/detail/components/PutRentalButton";
 
 const Detail = () => {
   const { rentalDetail, isLoading, error } = useDetail();
+  const { userId } = useSelector((state: Selector) => state.user);
   const router = useRouter();
   const [isRentalDetail, setIsRentalDetail] = useState(true);
 
@@ -28,10 +32,25 @@ const Detail = () => {
     );
   }, [isLoading, error, rentalDetail, isRentalDetail]);
 
+  const backPage = useCallback(() => {
+    if (!rentalDetail) {
+      router.push("/borrowing");
+      return;
+    }
+
+    const lender = rentalDetail.lender;
+    if (lender.id == userId) {
+      router.push("/lending");
+      return;
+    }
+
+    router.push("/borrowing");
+  }, [userId, rentalDetail]);
+
   return (
     <div className="w-full">
       <div className="fixed top-0 left-0 -z-50 bg-base-color w-full h-screen overflow-hidden"></div>
-      <Header title="詳細" isBack={true} />
+      <Header title="詳細" isBack={true} handleBackButton={backPage} />
       <div className="mt-5">
         <SwitchMenu
           isRentalDetail={isRentalDetail}
@@ -42,6 +61,7 @@ const Detail = () => {
       <div className="mt-14">{content}</div>
 
       <div className="mb-24"></div>
+      <PutRentalButton rentalDetail={rentalDetail} />
     </div>
   );
 };
