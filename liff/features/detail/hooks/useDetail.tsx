@@ -20,7 +20,6 @@ export const useDetail = () => {
     if (!rentalId) return;
 
     (async () => {
-      console.log("a");
       try {
         const resRentalDetail = await getDetail(idToken, rentalId as string);
         setRentalDetail(resRentalDetail);
