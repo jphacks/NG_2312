@@ -103,7 +103,12 @@ const Register = () => {
           />
         </div>
         <div className="mt-4">
-          <div className="w-2/3 border-b-2 border-main-color text-main-color text-base cursor-pointer">
+          <div
+            onClick={() =>
+              alert("実装途中のため、まだ使用することができません。")
+            }
+            className="w-2/3 border-b-2 border-main-color text-main-color text-base cursor-pointer"
+          >
             バーコード写真から本を登録
           </div>
         </div>
