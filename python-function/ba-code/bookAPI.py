@@ -11,7 +11,7 @@ def search_Books(number):
     params = {
         "q": f"isbn:{number}", # intitleで本のタイトルから検索
         "printType": "books",
-        "maxResults": 10
+        "maxResults": 5
     }
     response = requests.get(base_url, params=params)
 
