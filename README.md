@@ -2,6 +2,14 @@
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2023/07/JPHACKS2023_ogp.png)](https://www.youtube.com/watch?v=yYRQEdfGjEg)
 
+[デモ動画(こちらをクリックすることで動画ページへ飛びます](https://drive.google.com/file/d/1VPHbAtzYipJsI83txQl0LWmnsymWu2gj/view?usp=drive_link)
+
+[プロダクトURL(このURLからLINEでbotを友達追加してサービスを利用できます](https://liff.line.me/1645278921-kWRPP32q/?accountId=263xoaqc)</br>
+※ スマホでサービスを利用するようにしてください。PCやタブレット等で操作すると不具合が生じる場合があります。
+
+### LINE Botの友達追加QRコード
+![qrcode](https://github.com/jphacks/NG_2312/blob/feature/readme/images/linebot_qr.png)
+
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
 学生エンジニアは将来のため、自分の好奇心のために日々を勉強に費やしています。しかし勉強する上で欠かせないのが技術書ですが、一冊3000円と学生にとっては安いとは言えない金額です。友達が持っていれば貸してもらいたいし、触りだけでも読ませてもれえれば納得して3000円という値段を払い本を買うことができます。 ただやはり貸し借りを行うということはその管理も大変になるということです。借りている側は返す日が遅れれば友達の信頼を失い、貸している側もなるべく早く返して欲しいけど催促して関係を悪くしたくないですよね。 (僕も友達に「リーダブルコード」を貸したまま当分かえってこず、なかなか催促できないまま私のコードはスパゲッティに…)
@@ -64,8 +72,8 @@ LINE BotやLIFF(LINE Frontend Framework)を使用しているためユーザは�
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
-### LIFF(LINE Frontend Framework)と連携し、アプリ起動時の自動ログイン処理
-[実装内容](https://github.com/jphacks/NG_2312/commit/2af72e7a5005316d8e30b40fd45dc9e562f40220)
+- LIFF(LINE Frontend Framework)と連携し、アプリ起動時の自動ログイン処理 [実装内容](https://github.com/jphacks/NG_2312/commit/2af72e7a5005316d8e30b40fd45dc9e562f40220)
+
 
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
