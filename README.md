@@ -2,9 +2,9 @@
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2023/07/JPHACKS2023_ogp.png)](https://www.youtube.com/watch?v=yYRQEdfGjEg)
 
-[デモ動画(こちらをクリックすることで動画ページへ飛びます](https://drive.google.com/file/d/1VPHbAtzYipJsI83txQl0LWmnsymWu2gj/view?usp=drive_link)
+[デモ動画(こちらをクリックすることで動画ページへ飛びます)](https://drive.google.com/file/d/1VPHbAtzYipJsI83txQl0LWmnsymWu2gj/view?usp=drive_link)
 
-[プロダクトURL(このURLからLINEでbotを友達追加してサービスを利用できます](https://liff.line.me/1645278921-kWRPP32q/?accountId=263xoaqc)</br>
+[プロダクトURL(このURLからLINEでbotを友達追加してサービスを利用できます)](https://liff.line.me/1645278921-kWRPP32q/?accountId=263xoaqc)</br>
 ※ スマホでサービスを利用するようにしてください。PCやタブレット等で操作すると不具合が生じる場合があります。
 
 ### LINE Botの友達追加QRコード
@@ -79,7 +79,7 @@ LINE BotやLIFF(LINE Frontend Framework)を使用しているためユーザは�
   <b>こだわりポイント</b></br>
   既存のOpenCVライブラリを使用すればある程度大きく写してあるバーコードは認識できる。しかし、画像内に複数のバーコードが写っている場合一つ一つのバーコードが小さくなり認識できないという問題が判明し一気に複数の本情報を取得することは不可能であった。そこで画像から切り出した小領域を検出対象とし、画像の左上部分から小領域の大きさを変えて複数回画像を走査することで、バーコード認識の漏れが少なくなるようにし、本機能を実装した。</br>
   アプリ上での使用はまだできないため、ローカル上での実行の様子を以下に貼ります。</br>
-  画像をクリックすることで動画ページへと飛びます。
+  <b>画像をクリックすることで動画ページへと飛びます。</b>
    [![独自アルゴリズム実行動画](https://github.com/jphacks/NG_2312/blob/feature/readme/images/thumbnail_barcode.png)](https://drive.google.com/file/d/1EX4cwTZF4zv3pAwYhpvU9Pb_4IKXUSgi/view?usp=drive_link)
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 * 
