@@ -1,7 +1,6 @@
 # 友達との本の貸し借り管理サービス「LenBow」
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2023/07/JPHACKS2023_ogp.png)](https://www.youtube.com/watch?v=yYRQEdfGjEg)
-
+![IMAGE ALT TEXT HERE](https://github.com/jphacks/NG_2312/blob/master/images/ServiceImage.png)
 [デモ動画(こちらをクリックすることで動画ページへ飛びます)](https://drive.google.com/file/d/1VPHbAtzYipJsI83txQl0LWmnsymWu2gj/view?usp=drive_link)
 
 [プロダクトURL(このURLからLINEでbotを友達追加してサービスを利用できます)](https://liff.line.me/1645278921-kWRPP32q/?accountId=263xoaqc)</br>
