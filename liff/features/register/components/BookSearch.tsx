@@ -39,7 +39,7 @@ const BookSearch = (props: Props) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-9/12 h-14 rounded-lg border-[1px] border-light-color hover:border-2 outline-none px-2 text-base font-bold"
-            placeholder="本のタイトルを登録"
+            placeholder="本のキーワードを入力"
           />
           <button
             onClick={() => handleButton()}

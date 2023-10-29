@@ -1,13 +1,10 @@
-from datetime import datetime
-from supabase import Client, create_client
 import os 
-
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 
 def base(url,key):
     from datetime import datetime
-    from supabase import Client, create_client
+    from supabase import create_client
     line_id_list = []
 
     #supabase URL&key
@@ -20,11 +17,11 @@ def base(url,key):
     return_day = today_time.strftime("%Y-%m-%d")
 
     #data = supabase.table("test_jphack").eq('name',"akiyosi").execute()
-    replay_Rental = supabase.table("Rental").select("lender_id").eq("return_date", return_day).execute()
+    replay_Rental = supabase.table("Rental").select("id, borrower_id").eq("return_date", return_day).execute()
     data = replay_Rental.data
     for item in data:
         line_id_list.append(item)
 
     return supabase, return_day, data
 
-supabase, return_day, data= base(url,key)
+#supabase, return_day, data= base(url,key)
