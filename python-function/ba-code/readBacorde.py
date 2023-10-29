@@ -4,7 +4,7 @@ import bookAPI
 import json
 import copy
 
-file = "./images/Im_99.png"
+file = "./images/IM_99.png"
 
 #画像を読み込む
 img = cv2.imread(file)
@@ -21,34 +21,11 @@ def detect(img1):
             code.append(i)
 
 def search_Image():
+    # detection area : height and width
     list = [200, 300, 400, 500, 700]
+    
     flag_w = True
     flag_h = True
-
-    # for k in list:
-    #     for i in range(width):
-    #         # flag_w = True
-    #         a = i*k
-    #         b = a+k
-    #         if b >= height:
-    #             b = width
-    #             flag_w = False
-    #             if a > (width-k):
-    #                 break
-    #         for j in range(height):
-    #             flag_h = True
-    #             c = j*k
-    #             d = c + k
-    #             if d >= height:
-    #                 d = height
-    #                 flag_h = False
-    #             img1 = img[a : b, c: d]
-    #             detect(img1)
-    #             if flag_h == False:
-    #                 break
-    #         if flag_w == False:
-    #             continue
-    
     for k in list:
         a = 0
         while True:
@@ -66,6 +43,7 @@ def search_Image():
                 if d >= height:
                     d = height
                     flag_h = False
+                # cut image
                 img1 = img[a : b, c: d]
                 # print(a,b,c,d)
                 detect(img1)
