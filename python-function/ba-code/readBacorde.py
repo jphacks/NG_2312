@@ -67,7 +67,7 @@ def search_Image():
                     d = height
                     flag_h = False
                 img1 = img[a : b, c: d]
-                print(a,b,c,d)
+                # print(a,b,c,d)
                 detect(img1)
                 c += 100
                 if flag_h == False:
