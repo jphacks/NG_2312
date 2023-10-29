@@ -9,9 +9,14 @@
 ### 製品説明（具体的な製品の説明）
 1. LINEでのbotの友達追加でサービス開始
 2. (本を貸す側) 返してもらう日や貸す本の詳細登録をしQRコードを発行
-3. (借りる側) QRコードを読み取ることで、貸し借りが成立
-4. 返す日になると借りている側にbotから催促の通知がいく
-5. 本が帰ってきたら、返却を完了
+   ![register-flow](https://github.com/jphacks/NG_2312/blob/feature/readme/images/register.png)
+4. (借りる側) QRコードを読み取ることで、貸し借りが成立
+   ![borrow-flow](https://github.com/jphacks/NG_2312/blob/feature/readme/images/borrow.png)
+6. 返す日になると借りている側にbotから催促の通知がいく
+   通知のURLからどんな本を借りていたか詳細を確認できます。
+   ![notify-flow](https://github.com/jphacks/NG_2312/blob/feature/readme/images/notify.png)
+8. 本が帰ってきたら、返却を完了
+   ![return-flow](https://github.com/jphacks/NG_2312/blob/feature/readme/images/return.png)
 ### 特長
 #### 1. 特長1  ログイン操作やアプリインストール、初期設定など面倒なこと一切なく利用が開始できる。
 LINE BotやLIFF(LINE Frontend Framework)を使用しているためユーザはインストールやログイン処理などを意識することなくサービスを開始できます。またLINEという馴染みの深いアプリ上でサービスが動作するためユーザは抵抗感なく利用できるようになると考えます。
