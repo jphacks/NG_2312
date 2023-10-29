@@ -1,4 +1,5 @@
 from linebot.models import TextSendMessage
+import os
 
 def main(data,supabase,return_day,line_bot_api):
     if data is not None:
@@ -10,8 +11,8 @@ def main(data,supabase,return_day,line_bot_api):
             for row in data_User:
                 user_id = f"{row['line_id']}"
                 user_name = f"{row['name']}"
-                #liff_url = 
-                liff_url = f"https://liff/{rental_id}"
+                liff_url = os.getenv("liff_url")
+                liff_url = liff_url + rental_id 
                 messages = TextSendMessage(text=f"{user_name}""さんから借りた本は今日が返却日です\n\n"
                                             f"返却日:{return_day}\n\n"
                                             f"{liff_url}")

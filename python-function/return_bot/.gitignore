@@ -126,7 +126,6 @@ dmypy.json
 bin
 obj
 appsettings.json
-local.settings.json
 
 # Azurite artifacts
 __blobstorage__
@@ -139,3 +138,4 @@ retrun_bot - コピー.py
 line_apr_test.py
 line_apr_test.py
 azure_test.py
+hensuutest.py
