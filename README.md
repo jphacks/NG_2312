@@ -79,7 +79,8 @@ LINE BotやLIFF(LINE Frontend Framework)を使用しているためユーザは�
   既存のOpenCVライブラリを使用すればある程度大きく写してあるバーコードは認識できます。しかし、画像内に複数のバーコードが写っている場合一つ一つのバーコードが小さくなり認識できないという問題が判明し一気に複数の本情報を取得することは不可能でした。そこで画像から切り出した小領域を検出対象とし、画像の左上部分から小領域の大きさを変えて複数回画像を走査することで、バーコード認識の漏れが少なくなるようにし、本機能を実装しました。バーコード情報取得後はGoogle Books APIsによって本の詳細を取得します。</br>
   アプリ上での使用はまだできないため、ローカル上での実行の様子を以下に貼ります。</br>
   <b>画像をクリックすることで動画ページへと飛びます。</b>
-   [![独自アルゴリズム実行動画](https://github.com/jphacks/NG_2312/blob/feature/readme/images/thumbnail_barcode.png)](https://drive.google.com/file/d/1EX4cwTZF4zv3pAwYhpvU9Pb_4IKXUSgi/view?usp=drive_link)
+   [![独自アルゴリズム実行動画](https://github.com/jphacks/NG_2312/blob/feature/readme/images/thumbnail_barcode.png)](https://drive.google.com/file/d/1EX4cwTZF4zv3pAwYhpvU9Pb_4IKXUSgi/view?usp=drive_link)</br>
+  [ローカル環境で実行する方法](https://github.com/jphacks/NG_2312/commit/90a61dc242b8c8f641696252f888014bf23bdc2d)
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 * 
 * 
