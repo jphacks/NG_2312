@@ -46,6 +46,7 @@ uvicorn main:app --reload
   - まずは誰でもアクセスOKにしておいてよい
     - 余裕があれば特定のドメインからのアクセスにしたいけど多分無理
 2. Vercelにデプロイする
+  - 必要なのは、`main.py`、`readBarcode.py`、`bookAPI.py`、`path/`、`requirements.txt`
   - Vercelはgithubのリポジトリを参照しているので、リポジトリの更新でデプロイ更新してくれる
   - でもJPHACKSのリポジトリ使うと金かかるみたいなので、個人のリポジトリにフォークすればよいらしい
     - [https://docs.github.com/ja/get-started/quickstart/fork-a-repo]
