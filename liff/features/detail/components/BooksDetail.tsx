@@ -34,14 +34,17 @@ const BooksDetail = ({ bookDetailList }: Props) => {
         {bookDetailList.map((bookDetail, key) => (
           <SwiperSlide key={key}>
             <div className="w-full flex flex-col items-center pb-8">
-              {bookDetail?.image_url && (
-                <Image
-                  src={bookDetail.image_url}
-                  alt="book"
-                  width={128}
-                  height={182}
-                />
-              )}
+              <div className="w-[128px] h-[182px] bg-app-gray relative">
+                {bookDetail?.image_url && (
+                  <Image
+                    src={bookDetail.image_url}
+                    alt="book"
+                    width={128}
+                    height={182}
+                  />
+                )}
+              </div>
+
               <div className="mt-6 text-base font-bold w-9/12 break-words text-center">
                 {bookDetail.title}
               </div>
