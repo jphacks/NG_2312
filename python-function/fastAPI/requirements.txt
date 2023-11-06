@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+
+opencv-contrib-python==4.6.0.66
+requests
+numpy
+Pillow
+python-multipart
