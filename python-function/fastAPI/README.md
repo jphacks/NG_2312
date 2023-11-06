@@ -20,8 +20,8 @@ pip install -r requirements.txt
 python test2.py
 ```
 
-API込みで試したいなら、`send_re`を別ディレクトリに移して実行。Postman[https://www.postman.com/]使うならいらない。
-それか、本ディレクトリで以下のコード実行後[https://localhost***/docs]を見ればなんか試せるらしい。
+API込みで試したいなら、`send_re`を別ディレクトリに移して実行。Postman[https://www.postman.com/] 使うならいらない。
+それか、本ディレクトリで以下のコード実行後[https://localhost***/docs] を見ればなんか試せるらしい。
 (そも、FastAPIの起動に以下のコードの実行が必要)
 
 ```bash
@@ -37,7 +37,7 @@ uvicorn main:app --reload
     - [https://magazine.techacademy.jp/magazine/21089]
     - 現状、この形式ではなんの検証もしていないので現在のコードはゴミ
   - 今の所、FastAPIでやっているけど、Flaskに変更でもよい
-    - 長谷川さんからもらったやつ[https://qiita.com/melonpass/items/ff7fbfbb7edad2e768e2]そのまま使えそうなのでこっちに切り替えたほうがいいのかも
+    - 長谷川さんからもらったやつ[https://qiita.com/melonpass/items/ff7fbfbb7edad2e768e2] そのまま使えそうなのでこっちに切り替えたほうがいいのかも
     - (実は無駄なことをしている疑惑です申し訳ない)
   - この際、CORSの設定をやっておく
     - [https://zenn.dev/syo_yamamoto/articles/445ce152f05b02]
