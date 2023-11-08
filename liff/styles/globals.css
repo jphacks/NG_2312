@@ -21,3 +21,8 @@ a {
   height: 100vh;
   height: -webkit-fill-available;
 }
+
+.input-range {
+  -webkit-appearance: none;
+  appearance: none;
+}
