@@ -2,6 +2,7 @@ import ProgressBar from "@/features/questionary/components/ProgressBar";
 import Header from "../base/Header";
 import BookDisplay from "@/features/questionary/components/BookDisplay";
 import QuestionaryContents from "@/features/questionary/components/QuestionaryContents";
+import SmallButton from "../ui/Buttons/SmallButton";
 
 const Questionary = () => {
   return (
@@ -17,6 +18,19 @@ const Questionary = () => {
         </div>
         <div className="mt-9">
           <QuestionaryContents />
+        </div>
+        <div className="mt-9 flex justify-around mb-9">
+          <div className="w-32">
+            <SmallButton
+              isActive={true}
+              isReverse={true}
+              handleButton={() => {}}
+              value="戻る"
+            />
+          </div>
+          <div className="w-32">
+            <SmallButton isActive={true} handleButton={() => {}} value="次へ" />
+          </div>
         </div>
       </div>
     </div>
