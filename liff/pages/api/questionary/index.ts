@@ -11,9 +11,10 @@ export default async function handler(
     const id_token = req.headers.authorization;
     const userInfo = await getUserInfoByIdToken(id_token);
     const userId = userInfo.id;
+    const userPoints = userInfo.points;
 
     if (req.method == "POST") {
-      const { answerInfoList, destination_id, rental_id } = req.body;
+      const { answerInfoList, destination_id } = req.body;
       const respondent_id = userId;
 
       try {
@@ -28,6 +29,18 @@ export default async function handler(
             return newAnswer;
           })
         );
+
+        // アンケートの回答数*10ポイントを相手に付与
+        const plusPoints = newAnswers.length * 10;
+
+        await prisma.user.update({
+          where: {
+            id: destination_id,
+          },
+          data: {
+            points: userPoints + plusPoints,
+          },
+        });
 
         res.status(201).end();
       } catch (error) {
