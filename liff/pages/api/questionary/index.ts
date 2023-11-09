@@ -11,7 +11,6 @@ export default async function handler(
     const id_token = req.headers.authorization;
     const userInfo = await getUserInfoByIdToken(id_token);
     const userId = userInfo.id;
-    const userPoints = userInfo.points;
 
     if (req.method == "POST") {
       const { answerInfoList, destination_id } = req.body;
@@ -30,6 +29,13 @@ export default async function handler(
           })
         );
 
+        const destinationUser = await prisma.user.findUnique({
+          where: { id: destination_id },
+        });
+
+        if (!destinationUser) throw new Error("ポイント付与相手が存在しません");
+
+        const userPoints = destinationUser.points;
         // アンケートの回答数*10ポイントを相手に付与
         const plusPoints = newAnswers.length * 10;
 
