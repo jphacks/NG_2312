@@ -10,6 +10,7 @@ import LoadingQuestionary from "@/features/questionary/components/LoadingQuestio
 import { useEffect, useReducer, useState } from "react";
 import { AnswerInfo } from "@/features/questionary/types";
 import { postAnswers } from "@/features/questionary/api/postAnswers";
+import ResultModal from "@/features/questionary/components/ResultModal";
 
 export type AnswerAction =
   | { type: "SET_READABLE"; payload: { index: number; score: number } }
@@ -106,8 +107,7 @@ const Questionary = () => {
     // アンケート登録
     try {
       await postAnswers(idToken, rentalInfo!.lender_id, state);
-      console.log("success");
-    } catch {
+    } catch (error) {
       setPostError(new Error("can not answer"));
     } finally {
       setIsPosting(false);
@@ -119,6 +119,13 @@ const Questionary = () => {
     <div className="w-full">
       <div className="fixed top-0 left-0 -z-50 bg-base-color w-full h-screen overflow-hidden"></div>
       <Header title="アンケート" isBack={false} />
+      {rentalInfo && isModal && (
+        <ResultModal
+          rentalInfo={rentalInfo}
+          isLoading={isPosting}
+          error={postError}
+        />
+      )}
       {error ? null : rentalInfo && state.length ? (
         <div className="px-8">
           <div className="mt-9">
