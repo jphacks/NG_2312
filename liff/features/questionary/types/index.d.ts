@@ -4,3 +4,8 @@ export type AnswerInfo = {
   understandable_point: nunber;
   impressions: string;
 };
+
+export type RequestAnswers = {
+  destination_id: string;
+  answerInfoList: AnswerInfo[];
+};

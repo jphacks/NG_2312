@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { Selector } from "@/redux/type";
 import ProgressBar from "@/features/questionary/components/ProgressBar";
 import Header from "../base/Header";
 import BookDisplay from "@/features/questionary/components/BookDisplay";
@@ -7,6 +9,7 @@ import { useRentalInfo } from "@/features/questionary/hooks/useRentalInfo";
 import LoadingQuestionary from "@/features/questionary/components/LoadingQuestionary";
 import { useEffect, useReducer, useState } from "react";
 import { AnswerInfo } from "@/features/questionary/types";
+import { postAnswers } from "@/features/questionary/api/postAnswers";
 
 export type AnswerAction =
   | { type: "SET_READABLE"; payload: { index: number; score: number } }
@@ -51,9 +54,13 @@ const answerReducer = (
 };
 
 const Questionary = () => {
+  const { idToken } = useSelector((state: Selector) => state.user);
   const { rentalInfo, isLoading, error } = useRentalInfo();
   const [pageIndex, setPageIndex] = useState(0);
   const [state, dispatch] = useReducer(answerReducer, []);
+  const [isPosting, setIsPosting] = useState(false);
+  const [postError, setPostError] = useState<Error>();
+  const [isModal, setIsModal] = useState(false);
 
   // rentalInfoが取得できた段階でstateに初期値を設定
   useEffect(() => {
@@ -79,6 +86,30 @@ const Questionary = () => {
       alert("予期せぬエラーが発生しました。");
     }
   }
+
+  const handleCompButton = async () => {
+    if (!idToken) return;
+
+    // 最後のアンケートでなければ次のアンケートへ進む
+    if (rentalInfo?.books.length != pageIndex + 1) {
+      setPageIndex(pageIndex + 1);
+      return;
+    }
+
+    setIsModal(true);
+    setIsPosting(true);
+    // アンケート登録
+    try {
+      await postAnswers(idToken, rentalInfo!.lender_id, state);
+      console.log("success");
+    } catch {
+      setPostError(new Error("can not answer"));
+    } finally {
+      setIsPosting(false);
+    }
+    return;
+  };
+
   return (
     <div className="w-full">
       <div className="fixed top-0 left-0 -z-50 bg-base-color w-full h-screen overflow-hidden"></div>
@@ -112,7 +143,7 @@ const Questionary = () => {
             <div className="w-32">
               <SmallButton
                 isActive={rentalInfo?.books ? true : false}
-                handleButton={() => setPageIndex(pageIndex + 1)}
+                handleButton={() => handleCompButton()}
                 value={
                   rentalInfo?.books.length == pageIndex + 1 ? "登録" : "次へ"
                 }
