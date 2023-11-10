@@ -21,7 +21,6 @@ export const useRentalInfo = () => {
     (async () => {
       try {
         const resRentalInfo = await getRentalInfo(idToken, rentalId as string);
-        console.log(resRentalInfo);
         setRentalInfo(resRentalInfo);
       } catch (error) {
         setError(new Error("not Questionary"));
