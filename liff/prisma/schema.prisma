@@ -14,8 +14,11 @@ model User {
   line_id   String
   name      String
   image_url String?
+  points    Int      @default(0)
   lending   Rental[] @relation("LendRelation")
   borrowing Rental[] @relation("BorrowRelation")
+  books     Book[]
+  answers   Answer[]
 }
 
 model Rental {
@@ -31,12 +34,25 @@ model Rental {
 }
 
 model Book {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   description String
   author      String
   image_url   String?
   owner_id    String
   rental_id   String
-  rental      Rental  @relation(fields: [rental_id], references: [id])
+  rental      Rental   @relation(fields: [rental_id], references: [id])
+  owner       User     @relation(fields: [owner_id], references: [id])
+  answer      Answer[]
+}
+
+model Answer {
+  id                   Int    @id @default(autoincrement())
+  respondent_id        String
+  book_id              Int
+  readable_point       Int
+  understandable_point Int
+  impressions          String
+  book                 Book   @relation(fields: [book_id], references: [id])
+  respondent           User   @relation(fields: [respondent_id], references: [id])
 }
