@@ -90,6 +90,11 @@ const Questionary = () => {
   const handleCompButton = async () => {
     if (!idToken) return;
 
+    if (!state[pageIndex].impressions) {
+      alert("必須項目に回答をしてください。");
+      return;
+    }
+
     // 最後のアンケートでなければ次のアンケートへ進む
     if (rentalInfo?.books.length != pageIndex + 1) {
       setPageIndex(pageIndex + 1);
