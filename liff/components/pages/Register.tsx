@@ -10,10 +10,12 @@ import { Selector } from "@/redux/type";
 import { registerRental } from "@/features/register/api/registerRental";
 import BookCardList from "@/features/register/components/BookCardList";
 import FullWidthButton from "../ui/Buttons/FullWidthButton";
+import ImageInput from "@/features/register/components/ImageInput";
 
 type RegisterAction =
   | { type: "SELECT_DATE"; payload: Date }
   | { type: "ADD_BOOK"; payload: BookInfo }
+  | { type: "ADD_BOOKS"; payload: BookInfo[] }
   | { type: "DELETE_BOOK"; payload: number };
 
 const regiserReducer = (state: Register, action: RegisterAction): Register => {
@@ -25,6 +27,9 @@ const regiserReducer = (state: Register, action: RegisterAction): Register => {
     case "ADD_BOOK":
       const addedBookInfoList = [...state.bookInfoList, action.payload];
       return { ...state, bookInfoList: addedBookInfoList };
+    case "ADD_BOOKS":
+      const addedBooksInfoList = [...state.bookInfoList, ...action.payload];
+      return { ...state, bookInfoList: addedBooksInfoList };
     case "DELETE_BOOK":
       const removedBookInfoList = state.bookInfoList.filter(
         (_, index) => index !== action.payload
@@ -50,12 +55,19 @@ const Register = () => {
   const { idToken } = useSelector((state: Selector) => state.user);
 
   if (error) {
-    if (error.message == "not book") {
-      alert("関連の本が見つかりませんでした。");
-    } else if (error.message == "error post") {
-      alert("登録できませんでした");
-    } else {
-      alert("予期せぬエラーが発生しました。");
+    switch (error.message) {
+      case "not book":
+        alert("関連の本が見つかりませんでした。");
+        break;
+      case "not barcode":
+        alert("バーコードから本の情報を取得できませんでした。");
+        break;
+      case "error post":
+        alert("登録できませんでした");
+        break;
+      default:
+        alert("予期せぬエラーが発生しました。");
+        break;
     }
     setError(null);
   }
@@ -102,15 +114,15 @@ const Register = () => {
             }
           />
         </div>
+
         <div className="mt-4">
-          <div
-            onClick={() =>
-              alert("実装途中のため、まだ使用することができません。")
+          <ImageInput
+            setBookInfos={(bookInfos: BookInfo[]) =>
+              dispatch({ type: "ADD_BOOKS", payload: bookInfos })
             }
-            className="w-2/3 border-b-2 border-main-color text-main-color text-base cursor-pointer"
-          >
-            バーコード写真から本を登録
-          </div>
+            setIsLoading={setIsSearching}
+            setError={setError}
+          />
         </div>
         <div className="mt-10">
           {isSearching ? (
@@ -125,7 +137,7 @@ const Register = () => {
           )}
         </div>
       </div>
-      <div className="mt-20"></div>
+      <div className="mt-32"></div>
       <FullWidthButton
         isActive={state.bookInfoList.length != 0}
         value="確定"

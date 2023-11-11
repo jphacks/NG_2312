@@ -19,18 +19,18 @@ const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
           .map((bookInfo, index) => (
             <div key={index} className="mb-4">
               <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between px-5">
-                {bookInfo.image_url ? (
-                  <Image
-                    src={bookInfo.image_url}
-                    alt=""
-                    width={40}
-                    height={56}
-                  />
-                ) : (
-                  <div className="w-[56px] h-[56px] bg-app-gray"></div>
-                )}
+                <div className="w-10 h-14 bg-app-gray overflow-hidden relative">
+                  {bookInfo.image_url && (
+                    <Image
+                      src={bookInfo.image_url}
+                      alt=""
+                      width={40}
+                      height={56}
+                    />
+                  )}
+                </div>
 
-                <div className="w-full text-main-color truncate mx-5">
+                <div className="w-2/3 text-main-color truncate mx-5">
                   <div className="text-base font-semibold whitespace-nowrap truncate">
                     {bookInfo.title}
                   </div>
