@@ -50,7 +50,7 @@ export const useLogin = (liff: Liff | null) => {
     if (userId && idToken) return;
 
     if (!liff) return;
-    console.log(liff.getIDToken());
+
     if (!liff.isLoggedIn()) {
       liff.login();
     } else {
