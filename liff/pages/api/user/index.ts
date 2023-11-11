@@ -8,11 +8,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    console.log("login");
     const id_token = req.headers.authorization;
     const lineProfile = await getDecodedIdtoken(id_token);
 
     if (req.method == "POST") {
+      console.log("login");
+
       const line_id = lineProfile.lineUserId;
       const name = lineProfile.lineUserName;
       const image_url = lineProfile.linePictureUrl;
@@ -37,6 +38,25 @@ export default async function handler(
           return;
         }
 
+        res.status(200).json(user);
+      } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+        return;
+      }
+    } else if (req.method == "GET") {
+      const line_id = lineProfile.lineUserId;
+
+      try {
+        const user = await prisma.user.findFirst({
+          where: {
+            line_id: line_id,
+          },
+        });
+
+        if (!user) {
+          res.status(404).json("Not Found User");
+          return;
+        }
         res.status(200).json(user);
       } catch (error) {
         res.status(500).json({ message: "Internal Server Error" });
