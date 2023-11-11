@@ -14,3 +14,15 @@ export type LineStickerMessage = {
   packageId: string;
   stickerId: string;
 };
+
+export type LineImageMessage = {
+  type: "image";
+  originalContentUrl: string;
+  previewImageUrl: string;
+};
+
+export type LineMessagesType = (
+  | LineTextMessage
+  | LineStickerMessage
+  | LineImageMessage
+)[];
