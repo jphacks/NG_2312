@@ -6,8 +6,14 @@ import { Selector } from "@/redux/type";
 
 export const useUser = () => {
   const { idToken } = useSelector((state: Selector) => state.user);
-  const [userInfo, setUserInfo] = useState<User>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState<User>({
+    id: "",
+    line_id: "",
+    name: "unknown",
+    image_url: null,
+    points: 0,
+  });
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error>();
 
   const getUser = async (idToken: string) => {
@@ -22,6 +28,7 @@ export const useUser = () => {
         headers: headers,
       });
       const user: User = response.data;
+      setUserInfo(user);
     } catch (error) {
       setError(new Error("not found user"));
     } finally {
