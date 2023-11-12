@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+opencv-contrib-python-headless==4.6.0.66
+requests
+numpy
+python-multipart
