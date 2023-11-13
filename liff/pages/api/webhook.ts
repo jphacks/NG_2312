@@ -61,6 +61,7 @@ export default async function handler(
           owner_id: {
             in: friendIdList,
           },
+          public: true,
         },
         include: {
           owner: true,
