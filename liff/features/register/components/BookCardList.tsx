@@ -18,7 +18,10 @@ const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
           .reverse()
           .map((bookInfo, index) => (
             <div key={index} className="mb-4">
-              <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between px-5">
+              <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between pl-3 pr-5">
+                <div className="w-6 h-6 relative mr-3 cursor-pointer">
+                  <Image src="/images/public.png" alt="公開" fill />
+                </div>
                 <div className="w-10 h-14 bg-app-gray overflow-hidden relative">
                   {bookInfo.image_url && (
                     <Image
@@ -30,7 +33,7 @@ const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
                   )}
                 </div>
 
-                <div className="w-2/3 text-main-color truncate mx-5">
+                <div className="w-3/5 text-main-color truncate mx-5">
                   <div className="text-base font-semibold whitespace-nowrap truncate">
                     {bookInfo.title}
                   </div>
@@ -40,6 +43,7 @@ const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
                     </div>
                   </div>
                 </div>
+
                 <div
                   className="w-4 h-4 relative cursor-pointer"
                   onClick={() => deleteBook(bookInfoList.length - 1 - index)}
