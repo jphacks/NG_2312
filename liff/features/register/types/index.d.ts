@@ -5,6 +5,7 @@ export type BookInfo = {
   description: string;
   author: string;
   image_url?: string;
+  public: boolean;
 };
 
 export type Register = {
