@@ -19,6 +19,7 @@ export const searchBook = async (query: string): Promise<BookInfo> => {
       description: resBookInfo.description ?? "",
       author: resBookInfo.authors?.join("/") ?? resBookInfo.publisher ?? "",
       image_url: resBookInfo.imageLinks?.smallThumbnail,
+      public: true,
     };
 
     return bookInfo;

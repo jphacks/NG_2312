@@ -16,7 +16,8 @@ type RegisterAction =
   | { type: "SELECT_DATE"; payload: Date }
   | { type: "ADD_BOOK"; payload: BookInfo }
   | { type: "ADD_BOOKS"; payload: BookInfo[] }
-  | { type: "DELETE_BOOK"; payload: number };
+  | { type: "DELETE_BOOK"; payload: number }
+  | { type: "CHANGE_PUBLIC"; payload: number };
 
 const regiserReducer = (state: Register, action: RegisterAction): Register => {
   switch (action.type) {
@@ -35,6 +36,13 @@ const regiserReducer = (state: Register, action: RegisterAction): Register => {
         (_, index) => index !== action.payload
       );
       return { ...state, bookInfoList: removedBookInfoList };
+    case "CHANGE_PUBLIC":
+      const changedPublicBookInfoList = state.bookInfoList.concat();
+      changedPublicBookInfoList[action.payload] = {
+        ...changedPublicBookInfoList[action.payload],
+        public: !changedPublicBookInfoList[action.payload].public,
+      };
+      return { ...state, bookInfoList: changedPublicBookInfoList };
     default:
       return state;
   }
@@ -132,6 +140,9 @@ const Register = () => {
               bookInfoList={state.bookInfoList}
               deleteBook={(index: number) =>
                 dispatch({ type: "DELETE_BOOK", payload: index })
+              }
+              changePublic={(index: number) =>
+                dispatch({ type: "CHANGE_PUBLIC", payload: index })
               }
             />
           )}

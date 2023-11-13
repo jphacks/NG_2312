@@ -4,9 +4,10 @@ import { BookInfo } from "../types";
 type Props = {
   bookInfoList: BookInfo[];
   deleteBook: (index: number) => void;
+  changePublic: (index: number) => void;
 };
 
-const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
+const BookCardList = ({ bookInfoList, deleteBook, changePublic }: Props) => {
   return (
     <div className="w-full">
       <h3 className="text-center text-base font-bold text-main-color">
@@ -19,8 +20,15 @@ const BookCardList = ({ bookInfoList, deleteBook }: Props) => {
           .map((bookInfo, index) => (
             <div key={index} className="mb-4">
               <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between pl-3 pr-5">
-                <div className="w-6 h-6 relative mr-3 cursor-pointer">
-                  <Image src="/images/public.png" alt="公開" fill />
+                <div
+                  className="w-6 h-6 relative mr-3 cursor-pointer"
+                  onClick={() => changePublic(bookInfoList.length - 1 - index)}
+                >
+                  {bookInfo.public ? (
+                    <Image src="/images/public.png" alt="公開" fill />
+                  ) : (
+                    <Image src="/images/private.png" alt="公開" fill />
+                  )}
                 </div>
                 <div className="w-10 h-14 bg-app-gray overflow-hidden relative">
                   {bookInfo.image_url && (
