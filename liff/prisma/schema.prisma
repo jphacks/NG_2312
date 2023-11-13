@@ -41,6 +41,7 @@ model Book {
   image_url   String?
   owner_id    String
   rental_id   String
+  public      Boolean  @default(true)
   rental      Rental   @relation(fields: [rental_id], references: [id])
   owner       User     @relation(fields: [owner_id], references: [id])
   answer      Answer[]
