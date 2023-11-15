@@ -13,7 +13,14 @@ export const readBarcode = async (formData: FormData): Promise<BookInfo[]> => {
       }
     );
 
-    const resBookInfos: BookInfo[] = response.data.result;
+    const resDatas: BookInfo[] = response.data.result;
+    // バーコード読み取りAPIからのレスポンスにpublicが含まれていないため追加
+    const resBookInfos: BookInfo[] = resDatas.map((resData) => {
+      return {
+        ...resData,
+        public: true,
+      };
+    });
 
     if (resBookInfos.length == 0)
       throw new Error("バーコードから画像を取得できませんでした。");
