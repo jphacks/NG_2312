@@ -19,15 +19,25 @@ const BookCardList = ({ bookInfoList, deleteBook, changePublic }: Props) => {
           .reverse()
           .map((bookInfo, index) => (
             <div key={index} className="mb-4">
-              <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between pl-3 pr-5">
+              <div className="w-full h-20 bg-white rounded-lg shadow-md flex items-center justify-between pr-5">
                 <div
-                  className="w-6 h-6 relative mr-3 cursor-pointer"
+                  className="w-12 h-12 relative cursor-pointer flex justify-center items-center"
                   onClick={() => changePublic(bookInfoList.length - 1 - index)}
                 >
                   {bookInfo.public ? (
-                    <Image src="/images/public.png" alt="公開" fill />
+                    <Image
+                      src="/images/public.png"
+                      alt="公開"
+                      width={24}
+                      height={24}
+                    />
                   ) : (
-                    <Image src="/images/private.png" alt="公開" fill />
+                    <Image
+                      src="/images/private.png"
+                      alt="公開"
+                      width={24}
+                      height={24}
+                    />
                   )}
                 </div>
                 <div className="w-10 h-14 bg-app-gray overflow-hidden relative">
