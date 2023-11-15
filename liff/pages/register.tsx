@@ -11,7 +11,7 @@ const LendingPage = ({
   liff: Liff | null;
   liffError: string | null;
 }) => {
-  // useLogin(liff);
+  useLogin(liff);
 
   return <Register />;
 };
